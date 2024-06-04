@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block titulo %} Lista de Libros {% endblock %}
+
+{% block contenido %} 
+
+<div class="card">
+    <div class="card-header">
+        <a class="btn btn-success" href="{% url 'crear' %}" role="button">
+            Agregar nuevo libro
+        </a>        
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Libros</h4>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Título</th>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col" style="text-align:center;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for libro in libros %}
+                    <tr class="">
+                        <td style="vertical-align:middle;" scope="row">{{ libro.id }}</td>
+                        <td style="vertical-align:middle;">{{ libro.title }}</td>
+                        <td style="vertical-align:middle;">
+                            <img src="{{ libro.image.url }}" height="100">
+                        </td>
+                        <td style="vertical-align:middle;">{{ libro.description }}</td>
+                        <td style="vertical-align:middle;">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a name="" id="" class="btn btn-info" href="{% url 'editar' libro.id %}" role="button" style="margin-right:2px;">Editar</a>
+                                <a name="" id="" class="btn btn-danger" href="{% url 'eliminar' libro.id %}" role="button">Borrar</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+    <div class="card-footer text-muted"></div>
+</div>
+
+
+{% endblock %}
